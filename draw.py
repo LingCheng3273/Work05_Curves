@@ -3,14 +3,21 @@ from matrix import *
 import math
 
 
-def add_circle( points, cx, cy, cz, r, step ):
+def add_circle( points, cx, cy, cz, r, step= 100 ):
+    print "adding circle"
+    r= float(r)
+    cx= float(cx)
+    cy= float(cy)
+    cz= float(cz)
     initX= cx
     initY= cy
     initZ= cz
     while step > 1:
-        add_edge(points, r*math.cos(2*math.pi*step)+cx,r*math.cos(2*math.pi*(step-1))+cx, r*math.cos(2*math.pi*step)+cy, r*math.cos(2*math.pi*(step-1))+cy, cz, cz)
+        add_edge(points, r*math.cos(2.0*math.pi*step)+cx,r*math.cos(2.0*math.pi*(step-1))+cx, r*math.cos(2.0*math.pi*step)+cy, r*math.cos(2.0*math.pi*(step-1))+cy, cz, cz)
         step= step- 1
-    add_edge(points, r*math.cos(2*math.pi*step)+cx,r*math.cos(2*math.pi*step)+initZ, r*math.cos(2*math.pi*step)+cy, r*math.cos(2*math.pi*step)+initY, cz, cz)
+    add_edge(points, r*math.cos(2.0*math.pi*step)+cx,r*math.cos(2.0*math.pi*step)+initX, r*math.cos(2.0*math.pi*step)+cy, r*math.cos(2.0*math.pi*step)+initY, initZ, cz)
+    print "Matrix after adding cirlce:"
+    print_matrix(points)
 
 def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
     pass

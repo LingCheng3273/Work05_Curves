@@ -54,12 +54,17 @@ def make_rotZ( theta ):
     return t
 
 def print_matrix( matrix ):
-    s = ''
-    for r in range( len( matrix[0] ) ):
-        for c in range( len(matrix) ):
-            s+= str(matrix[c][r]) + ' '
-        s+= '\n'
-    print s
+    print "len of matrix" + str(len(matrix))
+    
+    if len(matrix) < 1:
+        print "[]"
+    else:
+        s = ''
+        for r in range( len( matrix[0] ) ):
+            for c in range( len(matrix) ):
+                s+= str(matrix[c][r]) + ' '
+            s+= '\n'
+        print s
 
 def ident( matrix ):
     for r in range( len( matrix[0] ) ):
