@@ -38,10 +38,15 @@ The file follows the following format:
 
 See the file script for an example of the file format
 """
-ARG_COMMANDS = [ 'line', 'scale', 'move', 'rotate', 'save' ]
+ARG_COMMANDS = [ 'line', 'scale', 'move', 'rotate', 'save', 'circle' ]
 
 def parse_file( fname, edges, transform, screen, color ):
+    edge_matrix= []
 
+    for x in range(len(edges)/3):
+        add_point(edge_matrix, edges[x * 3], edges[x * 3]+1, edges[x * 3] + 2)
+
+    edges = edge_matrix
     f = open(fname)
     lines = f.readlines()
 
@@ -51,6 +56,7 @@ def parse_file( fname, edges, transform, screen, color ):
         #print ':' + line + ':'
 
         if line in ARG_COMMANDS:
+            print "command found"
             c+= 1
             args = lines[c].strip().split(' ')
 
@@ -85,6 +91,9 @@ def parse_file( fname, edges, transform, screen, color ):
                 
         elif line == 'ident':
             ident(transform)
+
+        elif line == 'circle':
+            add_circle(edges, args[0], args[1], args[2], args[3], 100)
 
         elif line == 'apply':
             matrix_mult( transform, edges )

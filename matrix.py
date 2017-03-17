@@ -53,9 +53,7 @@ def make_rotZ( theta ):
     t[1][1] = math.cos(theta)
     return t
 
-def print_matrix( matrix ):
-    print "len of matrix" + str(len(matrix))
-    
+def print_matrix( matrix ):    
     if len(matrix) < 1:
         print "[]"
     else:

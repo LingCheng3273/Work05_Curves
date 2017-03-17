@@ -3,8 +3,9 @@ from matrix import *
 import math
 
 
-def add_circle( points, cx, cy, cz, r, step= 100 ):
+def add_circle( points, cx, cy, cz, r, step ):
     print "adding circle"
+    print "r: " + str(r)
     r= float(r)
     cx= float(cx)
     cy= float(cy)
@@ -12,10 +13,19 @@ def add_circle( points, cx, cy, cz, r, step= 100 ):
     initX= cx
     initY= cy
     initZ= cz
+    step= 4
+    initStep= step
     while step > 1:
-        add_edge(points, r*math.cos(2.0*math.pi*step)+cx,r*math.cos(2.0*math.pi*(step-1))+cx, r*math.cos(2.0*math.pi*step)+cy, r*math.cos(2.0*math.pi*(step-1))+cy, cz, cz)
+        var = 2*math.pi*step
+        print "x coor: "+ str(r*math.cos(2*math.pi*step)+cx)
+        print "var: " + str(2.0*math.pi*step)
+        print "cos var: "+str(math.cos(var))
+        print "test: " + str(math.cos(18.8))
+       # add_edge(points, r*math.cos*(2.0*math.pi*step)+ cx, r
+        print "step: "+ str(step)
+        add_edge(points, r*math.cos(2.0*math.pi*step)+cx, r*math.sin(2.0*math.pi*step)+cy, cz, r*math.cos(2.0*math.pi*(step-1))+cx, r*math.sin(2.0*math.pi*(step-1))+cy, cz)
         step= step- 1
-    add_edge(points, r*math.cos(2.0*math.pi*step)+cx,r*math.cos(2.0*math.pi*step)+initX, r*math.cos(2.0*math.pi*step)+cy, r*math.cos(2.0*math.pi*step)+initY, initZ, cz)
+    add_edge(points, r*math.cos(2.0*math.pi*step)+cx, r*math.sin(2.0*math.pi*step)+cy, cz, r*math.cos(2.0*math.pi*(initStep))+initX, r*math.sin(2.0*math.pi*(initStep))+initY, initZ)
     print "Matrix after adding cirlce:"
     print_matrix(points)
 
