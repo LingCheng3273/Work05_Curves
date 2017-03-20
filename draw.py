@@ -21,9 +21,22 @@ def add_circle( points, cx, cy, cz, r, step ):
     add_edge(points, r*math.cos(rad)+cx, r*math.sin(rad)+cy, cz, r*math.cos(0.0)+initX, r*math.sin(0)+initY, initZ)
 
 def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
-    pass
-
-
+    steps_taken= 0.0
+    xCoef= generate_curve_coefs(x0, x1, x2, x3, curve_type)
+    yCoef= generate_curve_coefs(y0, y1, y2, y3, curve_type)
+    print "this is xCoef:"
+    print xCoef
+    print "this is yCoef:"
+    print yCoef
+    while steps_taken < 1:
+        next_step= steps_taken + 1.0/step
+        x= float(xCoef[0])* math.pow(steps_taken, 3)+ float(xCoef[1])* math.pow(step_taken, 2) + float(xCoef[2])* step_taken + float(xCoef[3])
+        y= float(yCoef[0])* math.pow(steps_taken, 3)+ float(yCoef[1])* math.pow(step_taken, 2) + float(yCoef[2])* step_taken + float(yCoef[3])
+        x_next= float(xCoef[0])* math.pow(next_step, 3)+ float(xCoef[1])* math.pow(next_step, 2) + float(xCoef[2])* next_step + float(xCoef[3])
+        y_next= float(yCoef[0])* math.pow(next_step, 3)+ float(yCoef[1])* math.pow(next_step, 2) + float(yCoef[2])* next_step + float(yCoef[3])
+        add_edge(points, x, y, 0, x_next, y_next, 0)
+        steps_taken = steps_taken + 1.0/ step
+    add_edge(points, x, y, 0, xCoef[3], yCoef[3], 0)
 
 def draw_lines( matrix, screen, color ):
     if len(matrix) < 2:

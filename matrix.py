@@ -6,6 +6,8 @@ def make_bezier():
     bez.append([3, -6, 3, 0])
     bez.append([-3, 3, 0, 0])
     bez.append([1, 0, 0, 0])
+    print "this is your bezier matrix:"
+    print_matrix(bez)
     return bez
 
 def make_hermite():
@@ -14,10 +16,20 @@ def make_hermite():
     her.append([-2, 3, 0, 0])
     her.append([1, -2, 1, 0])
     her.append([1, -1, 0, 0])
+    print "this is your hermite matrix:"
+    print_matrix(her)
     return her
 
 def generate_curve_coefs( p1, p2, p3, p4, t ):
-    pass
+    matrix= [p1, p2, p3, p4]
+    
+    if t == "hermite":
+        matrix_mult(make_hermite(), matrix)
+    elif t == "bezier":
+        matrix_mult(make_bezier(), matrix)
+    print "this is your coefficient matrix:"
+    print_matrix(matrix)
+    return matrix
 
 
 def make_translate( x, y, z ):
