@@ -4,8 +4,6 @@ import math
 
 
 def add_circle( points, cx, cy, cz, r, step ):
-    print "adding circle"
-    print "r: " + str(r)
     r= float(r)
     cx= float(cx)
     cy= float(cy)
@@ -13,21 +11,14 @@ def add_circle( points, cx, cy, cz, r, step ):
     initX= cx
     initY= cy
     initZ= cz
-    step= 4
-    initStep= step
-    while step > 1:
-        var = 2*math.pi*step
-        print "x coor: "+ str(r*math.cos(2*math.pi*step)+cx)
-        print "var: " + str(2.0*math.pi*step)
-        print "cos var: "+str(math.cos(var))
-        print "test: " + str(math.cos(18.8))
-       # add_edge(points, r*math.cos*(2.0*math.pi*step)+ cx, r
-        print "step: "+ str(step)
-        add_edge(points, r*math.cos(2.0*math.pi*step)+cx, r*math.sin(2.0*math.pi*step)+cy, cz, r*math.cos(2.0*math.pi*(step-1))+cx, r*math.sin(2.0*math.pi*(step-1))+cy, cz)
-        step= step- 1
-    add_edge(points, r*math.cos(2.0*math.pi*step)+cx, r*math.sin(2.0*math.pi*step)+cy, cz, r*math.cos(2.0*math.pi*(initStep))+initX, r*math.sin(2.0*math.pi*(initStep))+initY, initZ)
-    print "Matrix after adding cirlce:"
-    print_matrix(points)
+    step= 50
+    steps_taken= 0.0
+    while steps_taken < 1:
+        rad = 2*math.pi*steps_taken
+        rad_next = 2*math.pi*(steps_taken-1.0/step)
+        add_edge(points, r*math.cos(rad)+cx, r*math.sin(rad)+cy, cz, r*math.cos(rad_next)+cx, r*math.sin(rad_next)+cy, cz)
+        steps_taken= steps_taken+ (1.0 / step)
+    add_edge(points, r*math.cos(rad)+cx, r*math.sin(rad)+cy, cz, r*math.cos(0.0)+initX, r*math.sin(0)+initY, initZ)
 
 def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
     pass
