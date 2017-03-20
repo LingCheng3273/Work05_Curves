@@ -30,13 +30,12 @@ def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
     print yCoef
     while steps_taken < 1:
         next_step= steps_taken + 1.0/step
-        x= float(xCoef[0])* math.pow(steps_taken, 3)+ float(xCoef[1])* math.pow(step_taken, 2) + float(xCoef[2])* step_taken + float(xCoef[3])
-        y= float(yCoef[0])* math.pow(steps_taken, 3)+ float(yCoef[1])* math.pow(step_taken, 2) + float(yCoef[2])* step_taken + float(yCoef[3])
-        x_next= float(xCoef[0])* math.pow(next_step, 3)+ float(xCoef[1])* math.pow(next_step, 2) + float(xCoef[2])* next_step + float(xCoef[3])
-        y_next= float(yCoef[0])* math.pow(next_step, 3)+ float(yCoef[1])* math.pow(next_step, 2) + float(yCoef[2])* next_step + float(yCoef[3])
+        x= float(xCoef[0][0])* math.pow(steps_taken, 3)+ float(xCoef[0][1])* math.pow(steps_taken, 2) + float(xCoef[0][2])* steps_taken + float(xCoef[0][3])
+        y= float(yCoef[0][0])* math.pow(steps_taken, 3)+ float(yCoef[0][1])* math.pow(steps_taken, 2) + float(yCoef[0][2])* steps_taken + float(yCoef[0][3])
+        x_next= float(xCoef[0][0])* math.pow(next_step, 3)+ float(xCoef[0][1])* math.pow(next_step, 2) + float(xCoef[0][2])* next_step + float(xCoef[0][3])
+        y_next= float(yCoef[0][0])* math.pow(next_step, 3)+ float(yCoef[0][1])* math.pow(next_step, 2) + float(yCoef[0][2])* next_step + float(yCoef[0][3])
         add_edge(points, x, y, 0, x_next, y_next, 0)
         steps_taken = steps_taken + 1.0/ step
-    add_edge(points, x, y, 0, xCoef[3], yCoef[3], 0)
 
 def draw_lines( matrix, screen, color ):
     if len(matrix) < 2:

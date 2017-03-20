@@ -16,13 +16,12 @@ def make_hermite():
     her.append([-2, 3, 0, 0])
     her.append([1, -2, 1, 0])
     her.append([1, -1, 0, 0])
-    print "this is your hermite matrix:"
-    print_matrix(her)
     return her
 
 def generate_curve_coefs( p1, p2, p3, p4, t ):
-    matrix= [p1, p2, p3, p4]
-    
+    matrix= [[float(p1), float(p2), float(p3), float(p4)]]
+    print "this is your initial point matrix:"
+    print_matrix(matrix)
     if t == "hermite":
         matrix_mult(make_hermite(), matrix)
     elif t == "bezier":

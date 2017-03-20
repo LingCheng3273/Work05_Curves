@@ -95,8 +95,11 @@ def parse_file( fname, edges, transform, screen, color ):
         elif line == 'circle':
             add_circle(edges, args[0], args[1], args[2], args[3], 100)
             
-        elif (line == 'hermite' or line == 'bezier'):
+        elif line == 'hermite':
             add_curve(edges, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], 50, 'hermite')
+            
+        elif line == 'bezier':
+            add_curve(edges, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], 50, 'bezier')
 
         elif line == 'apply':
             matrix_mult( transform, edges )
