@@ -24,10 +24,6 @@ def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
     steps_taken= 0.0
     xCoef= generate_curve_coefs(x0, x1, x2, x3, curve_type)
     yCoef= generate_curve_coefs(y0, y1, y2, y3, curve_type)
-    print "this is xCoef:"
-    print xCoef
-    print "this is yCoef:"
-    print yCoef
     while steps_taken < 1:
         next_step= steps_taken + 1.0/step
         x= float(xCoef[0][0])* math.pow(steps_taken, 3)+ float(xCoef[0][1])* math.pow(steps_taken, 2) + float(xCoef[0][2])* steps_taken + float(xCoef[0][3])
