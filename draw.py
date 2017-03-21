@@ -4,32 +4,32 @@ import math
 
 
 def add_circle( points, cx, cy, cz, r, step ):
-    r= float(r)
-    cx= float(cx)
-    cy= float(cy)
-    cz= float(cz)
-    initX= cx
-    initY= cy
-    initZ= cz
-    step= 50
-    steps_taken= 0.0
+    r = float(r)
+    cx = float(cx)
+    cy = float(cy)
+    cz = float(cz)
+    initX = cx
+    initY = cy
+    initZ = cz
+    step = 50
+    steps_taken = 0.0
     while steps_taken < 1:
         rad = 2*math.pi*steps_taken
         rad_next = 2*math.pi*(steps_taken-1.0/step)
         add_edge(points, r*math.cos(rad)+cx, r*math.sin(rad)+cy, cz, r*math.cos(rad_next)+cx, r*math.sin(rad_next)+cy, cz)
-        steps_taken= steps_taken+ (1.0 / step)
+        steps_taken = steps_taken+ (1.0 / step)
     add_edge(points, r*math.cos(rad)+cx, r*math.sin(rad)+cy, cz, r*math.cos(0.0)+initX, r*math.sin(0)+initY, initZ)
 
 def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
-    steps_taken= 0.0
-    xCoef= generate_curve_coefs(x0, x1, x2, x3, curve_type)
-    yCoef= generate_curve_coefs(y0, y1, y2, y3, curve_type)
+    steps_taken = 0.0
+    xCoef = generate_curve_coefs(x0, x1, x2, x3, curve_type)
+    yCoef = generate_curve_coefs(y0, y1, y2, y3, curve_type)
     while steps_taken < 1:
-        next_step= steps_taken + 1.0/step
-        x= float(xCoef[0][0])* math.pow(steps_taken, 3)+ float(xCoef[0][1])* math.pow(steps_taken, 2) + float(xCoef[0][2])* steps_taken + float(xCoef[0][3])
-        y= float(yCoef[0][0])* math.pow(steps_taken, 3)+ float(yCoef[0][1])* math.pow(steps_taken, 2) + float(yCoef[0][2])* steps_taken + float(yCoef[0][3])
-        x_next= float(xCoef[0][0])* math.pow(next_step, 3)+ float(xCoef[0][1])* math.pow(next_step, 2) + float(xCoef[0][2])* next_step + float(xCoef[0][3])
-        y_next= float(yCoef[0][0])* math.pow(next_step, 3)+ float(yCoef[0][1])* math.pow(next_step, 2) + float(yCoef[0][2])* next_step + float(yCoef[0][3])
+        next_step = steps_taken + 1.0/step
+        x = float(xCoef[0][0])* math.pow(steps_taken, 3)+ float(xCoef[0][1])* math.pow(steps_taken, 2) + float(xCoef[0][2])* steps_taken + float(xCoef[0][3])
+        y = float(yCoef[0][0])* math.pow(steps_taken, 3)+ float(yCoef[0][1])* math.pow(steps_taken, 2) + float(yCoef[0][2])* steps_taken + float(yCoef[0][3])
+        x_next = float(xCoef[0][0])* math.pow(next_step, 3)+ float(xCoef[0][1])* math.pow(next_step, 2) + float(xCoef[0][2])* next_step + float(xCoef[0][3])
+        y_next = float(yCoef[0][0])* math.pow(next_step, 3)+ float(yCoef[0][1])* math.pow(next_step, 2) + float(yCoef[0][2])* next_step + float(yCoef[0][3])
         add_edge(points, x, y, 0, x_next, y_next, 0)
         steps_taken = steps_taken + 1.0/ step
 

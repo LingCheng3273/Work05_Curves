@@ -1,7 +1,7 @@
 import math
 
 def make_bezier():
-    bez= []
+    bez = []
     bez.append([-1, 3, -3, 1])
     bez.append([3, -6, 3, 0])
     bez.append([-3, 3, 0, 0])
@@ -9,7 +9,7 @@ def make_bezier():
     return bez
 
 def make_hermite():
-    her= []
+    her = []
     her.append([2, -3, 0, 1])
     her.append([-2, 3, 0, 0])
     her.append([1, -2, 1, 0])
@@ -17,7 +17,7 @@ def make_hermite():
     return her
 
 def generate_curve_coefs( p1, p2, p3, p4, t ):
-    matrix= [[float(p1), float(p2), float(p3), float(p4)]]
+    matrix = [[float(p1), float(p2), float(p3), float(p4)]]
     if t == "hermite":
         matrix_mult(make_hermite(), matrix)
     elif t == "bezier":
